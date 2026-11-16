@@ -56,6 +56,15 @@
   .cifra b { display: block; font-size: 1.8rem; color: var(--azul); line-height: 1.1; }
   .cifra span { color: var(--gris); font-size: .95rem; }
 
+  /* Historia */
+  section.historia { background: #f3f8ee; }
+  .historia-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: 40px; align-items: center; }
+  .bolsa { margin: 0; }
+  .bolsa img { width: 100%; max-width: 360px; display: block; margin: 0 auto; border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.18); transform: rotate(-2deg); }
+  .bolsa figcaption { text-align: center; color: var(--gris); font-size: .88rem; margin-top: 14px; }
+  .historia p { font-size: 1.05rem; }
+
   /* Qué ofrecemos */
   .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
   .tarjeta { background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 3px 14px rgba(0,0,0,.07); border-top: 4px solid var(--verde); }
@@ -98,7 +107,7 @@
   .wa-flot svg { width: 32px; height: 32px; fill: #fff; }
 
   @media (max-width: 760px) {
-    .dos, .visita, .fb-grid, footer .cols { grid-template-columns: 1fr; }
+    .dos, .visita, .fb-grid, .historia-grid, footer .cols { grid-template-columns: 1fr; }
     .galeria { grid-template-columns: repeat(2, 1fr); }
     .hero img.logo { width: 140px; }
     .fotos-familia .peq { left: 0; }
@@ -150,6 +159,25 @@
     <div class="fotos-familia">
       <figure class="grande"><img src="img/01_german_corvina.jpg" alt="Germán Jurado en el puesto con una corvina"><figcaption>Germán, hoy en el puesto</figcaption></figure>
       <figure class="peq"><img src="img/07_antonio_jurado.jpg" alt="Antonio Jurado, «Juradito», fundador de la pescadería"><figcaption>Antonio Jurado «Juradito», el fundador</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="historia">
+  <div class="wrap historia-grid">
+    <figure class="bolsa">
+      <img src="img/12_bolsa_antigua.jpg" alt="Bolsa antigua de la Pescadería Nuestra Señora del Carmen, de Antonio Jurado López" loading="lazy">
+      <figcaption>Una de nuestras bolsas de antes</figcaption>
+    </figure>
+    <div>
+      <h2>Nuestra historia</h2>
+      <p>La pescadería nació como <b>Pescadería Nuestra Señora del Carmen</b>, en la calle <b>General La Serna, 109</b>,
+        con aquel teléfono de solo dos cifras: el <b>78</b>. Al frente estaba <b>Antonio Jurado López</b>, y además de pescado
+        se despachaban productos congelados, pollos y huevos frescos.</p>
+      <p>Con los años, Antonio se hizo tan conocido en el pueblo que la gente dejó de decir «voy a la pescadería del Carmen»
+        para decir <b>«voy a Juradito»</b>, su apodo. Y así, de boca en boca, la pescadería acabó tomando su nombre.</p>
+      <p>Hoy lo seguimos llevando con orgullo. Ha cambiado el sitio y han cambiado las bolsas, pero el oficio sigue en la familia:
+        buen pescado y el trato de siempre.</p>
     </div>
   </div>
 </section>
