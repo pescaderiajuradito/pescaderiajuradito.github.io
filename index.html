@@ -3,29 +3,212 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pescadería Juradito · App de gestión</title>
+<title>Pescadería Juradito · Pescados y mariscos desde 1940 · Las Cabezas de San Juan</title>
+<meta name="description" content="Pescadería Juradito: pescado fresco y marisco en el Mercado de Abastos de Las Cabezas de San Juan (Sevilla), puestos 9 y 10. Desde 1940. Encargos por WhatsApp al 610 71 33 98.">
+<meta property="og:title" content="Pescadería Juradito · Desde 1940">
+<meta property="og:description" content="Pescado fresco y marisco en el Mercado de Abastos de Las Cabezas de San Juan. Encargos por WhatsApp.">
+<meta property="og:image" content="https://pescaderiajuradito.github.io/img/00_portada_pescado.jpg">
+<link rel="icon" href="img/logo.jpg">
 <style>
-  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 0 auto; padding: 32px 20px; color: #1d2733; line-height: 1.6; }
-  h1 { color: #16365C; margin-bottom: 4px; }
-  .sub { color: #5a6b7d; margin-top: 0; }
-  a { color: #16365C; }
-  footer { margin-top: 48px; font-size: 14px; color: #5a6b7d; }
+  :root {
+    --azul: #1f5fd1;
+    --azul-osc: #123a80;
+    --verde: #7bc62d;
+    --texto: #1d2733;
+    --gris: #5a6b7d;
+    --fondo: #f5f8fc;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--texto); line-height: 1.6; background: #fff; }
+  a { color: var(--azul); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* Cabecera */
+  header.hero { position: relative; min-height: 78vh; display: flex; align-items: center; color: #fff;
+    background: linear-gradient(180deg, rgba(10,30,70,.55), rgba(10,30,70,.75)), url("img/00_portada_pescado.jpg") center/cover no-repeat; }
+  .hero .wrap { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; padding-top: 40px; padding-bottom: 40px; }
+  .hero img.logo { width: 190px; height: auto; background: #fff; border-radius: 22px; padding: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+  .hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 0 0 6px; line-height: 1.1; }
+  .hero .lema { font-size: 1.25rem; margin: 0 0 4px; color: #e6f2ff; }
+  .hero .donde { margin: 0 0 22px; color: #cfe0f7; }
+  .botones { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1.05rem; }
+  .btn.wa { background: #25d366; color: #fff; }
+  .btn.tel { background: #fff; color: var(--azul-osc); }
+  .btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+  section { padding: 64px 0; }
+  section.alt { background: var(--fondo); }
+  h2 { color: var(--azul-osc); font-size: 1.9rem; margin: 0 0 18px; }
+  h2::after { content: ""; display: block; width: 56px; height: 4px; background: var(--verde); border-radius: 2px; margin-top: 8px; }
+
+  /* Quiénes somos */
+  .dos { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .fotos-familia { position: relative; padding-bottom: 70px; }
+  .fotos-familia figure { margin: 0; }
+  .fotos-familia img { width: 100%; display: block; border-radius: 14px; box-shadow: 0 6px 24px rgba(0,0,0,.15); }
+  .fotos-familia figcaption { font-size: .88rem; color: var(--gris); margin-top: 6px; }
+  .fotos-familia .peq { position: absolute; left: -24px; bottom: 0; width: 42%; }
+  .fotos-familia .peq img { border: 5px solid #fff; filter: grayscale(1); }
+  .fotos-familia .grande figcaption { text-align: right; }
+  .cifras { display: flex; gap: 28px; margin-top: 22px; flex-wrap: wrap; }
+  .cifra b { display: block; font-size: 1.8rem; color: var(--azul); line-height: 1.1; }
+  .cifra span { color: var(--gris); font-size: .95rem; }
+
+  /* Qué ofrecemos */
+  .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
+  .tarjeta { background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 3px 14px rgba(0,0,0,.07); border-top: 4px solid var(--verde); }
+  .tarjeta h3 { margin: 0 0 6px; color: var(--azul-osc); font-size: 1.15rem; }
+  .tarjeta p { margin: 0; color: var(--gris); }
+
+  /* Galería */
+  .galeria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .galeria figure { margin: 0; position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 4/3; }
+  .galeria img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .galeria figure:hover img { transform: scale(1.05); }
+  .galeria figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 12px 8px; color: #fff; font-size: .92rem;
+    background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+
+  /* Visítanos */
+  .visita { display: grid; grid-template-columns: .9fr 1.1fr; gap: 32px; align-items: stretch; }
+  .datos p { margin: 0 0 14px; }
+  .datos b { color: var(--azul-osc); }
+  .mapa { border: 0; width: 100%; min-height: 320px; border-radius: 14px; }
+
+  /* Pie */
+  footer { background: var(--azul-osc); color: #d7e3f5; padding: 40px 0 28px; font-size: .95rem; }
+  footer a { color: #fff; }
+  footer .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  footer h4 { color: #fff; margin: 0 0 8px; }
+  footer .legal { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.15); color: #a9bcd8; font-size: .85rem; }
+
+  /* Botón flotante WhatsApp */
+  .wa-flot { position: fixed; right: 18px; bottom: 18px; width: 58px; height: 58px; border-radius: 50%; background: #25d366;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0,0,0,.3); z-index: 10; }
+  .wa-flot svg { width: 32px; height: 32px; fill: #fff; }
+
+  @media (max-width: 760px) {
+    .dos, .visita, footer .cols { grid-template-columns: 1fr; }
+    .galeria { grid-template-columns: repeat(2, 1fr); }
+    .hero img.logo { width: 140px; }
+    .fotos-familia .peq { left: 0; }
+    header.hero { min-height: 70vh; }
+  }
 </style>
 </head>
 <body>
-<h1>Pescadería Juradito</h1>
-<p class="sub">Pescadería desde 1940 · Mercado Municipal de Abastos, puestos 9 y 10 · Las Cabezas de San Juan (Sevilla)</p>
 
-<h2>App de gestión «Juradito»</h2>
-<p>«Juradito» es la aplicación de uso interno de la pescadería, para el teléfono Android de la tienda y el ordenador del titular.
-Sirve para hacer las etiquetas de los productos, llevar los registros de autocontrol, los albaranes y las facturas a los clientes,
-las cuentas, el almacén y el registro de jornada de los trabajadores.</p>
-<p>La aplicación no está a la venta ni disponible al público: solo la usan el titular y el personal de la pescadería.</p>
-<p>Para guardar sus copias de seguridad y sincronizar el teléfono con el ordenador, la aplicación usa la cuenta de Google Drive de la pescadería,
-con acceso únicamente a los archivos que crea ella misma.</p>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.4-1.5-5.2C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.3-18.1C18.1 1.5 15.1.2 12 .2 5.5.2.2 5.5.2 12c0 2.1.5 4.1 1.6 5.9L.1 24l6.3-1.7c1.7.9 3.7 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.2z"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></symbol>
+</svg>
 
-<p><a href="privacidad.html">Política de privacidad</a></p>
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="img/logo.jpg" alt="Logotipo de Pescadería Juradito">
+    <div>
+      <h1>Pescadería Juradito</h1>
+      <p class="lema">Pescados y mariscos desde 1940 · Garantía de calidad</p>
+      <p class="donde">Mercado de Abastos de Las Cabezas de San Juan · Puestos 9 y 10</p>
+      <div class="botones">
+        <a class="btn wa" href="https://wa.me/34610713398?text=Hola%2C%20quiero%20hacer%20un%20encargo" target="_blank" rel="noopener">
+          <svg><use href="#i-wa"/></svg> Encargos por WhatsApp</a>
+        <a class="btn tel" href="tel:+34610713398"><svg><use href="#i-tel"/></svg> 610 71 33 98</a>
+      </div>
+    </div>
+  </div>
+</header>
 
-<footer>Contacto: juraditopescaderia@gmail.com · Titular: Germán Jurado Morón</footer>
+<section>
+  <div class="wrap dos">
+    <div>
+      <h2>Una pescadería de familia</h2>
+      <p>Todo empezó en 1940 con <b>Antonio Jurado, «Juradito»</b>, que fundó la pescadería y le dio su nombre.
+        Desde entonces llevamos pescado fresco y marisco a las mesas de Las Cabezas de San Juan.</p>
+      <p>Hoy Germán, su hijo, sigue al frente en el <b>Mercado de Abastos, puestos 9 y 10</b>, con la misma idea de siempre:
+        buen género, bien tratado y al mejor precio.</p>
+      <p>Cada mañana elegimos el pescado y el marisco y te lo preparamos como lo necesites. Y si no puedes pasarte,
+        mándanos tu encargo por WhatsApp: te lo tenemos listo o te lo llevamos a casa.</p>
+      <div class="cifras">
+        <div class="cifra"><b>1940</b><span>en el oficio</span></div>
+        <div class="cifra"><b>2.400+</b><span>seguidores en Facebook</span></div>
+        <div class="cifra"><b>96 %</b><span>nos recomiendan</span></div>
+      </div>
+    </div>
+    <div class="fotos-familia">
+      <figure class="grande"><img src="img/01_german_corvina.jpg" alt="Germán Jurado en el puesto con una corvina"><figcaption>Germán, hoy en el puesto</figcaption></figure>
+      <figure class="peq"><img src="img/07_antonio_jurado.jpg" alt="Antonio Jurado, «Juradito», fundador de la pescadería"><figcaption>Antonio Jurado «Juradito», el fundador</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Qué encontrarás</h2>
+    <div class="tarjetas">
+      <div class="tarjeta"><h3>Pescado fresco</h3><p>Pescado del día, de nuestra costa y de lonja, limpio y preparado a tu gusto.</p></div>
+      <div class="tarjeta"><h3>Marisco</h3><p>Gambas, langostinos, cigalas, patas de cangrejo, mejillones… fresco y cocido.</p></div>
+      <div class="tarjeta"><h3>Encargos por WhatsApp</h3><p>Escríbenos al 610 71 33 98 y te dejamos tu pedido preparado.</p></div>
+      <div class="tarjeta"><h3>Reparto a domicilio</h3><p>Te llevamos tu pedido a casa por solo 1,50 € más por pedido.</p></div>
+      <div class="tarjeta"><h3>Fechas especiales</h3><p>Mariscadas y encargos para Navidad, Nochevieja y celebraciones. Reserva con tiempo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Nuestro género</h2>
+    <div class="galeria">
+      <figure><img src="img/11_salmonetes_doradas.jpg" alt="Salmonetes, doradas y lenguado" loading="lazy"><figcaption>Salmonetes, doradas y lenguado</figcaption></figure>
+      <figure><img src="img/08_boquerones.jpg" alt="Boquerones frescos" loading="lazy"><figcaption>Boquerones frescos</figcaption></figure>
+      <figure><img src="img/03_marisco.jpg" alt="Gambas, langostinos, mejillones y cangrejo" loading="lazy"><figcaption>Marisco fresco y cocido</figcaption></figure>
+      <figure><img src="img/09_pescado_variado.jpg" alt="Pescadillas, acedías y lenguados en el puesto" loading="lazy"><figcaption>Pescado del día</figcaption></figure>
+      <figure><img src="img/10_langostinos.jpg" alt="Langostinos crudos" loading="lazy"><figcaption>Langostinos</figcaption></figure>
+      <figure><img src="img/00_portada_pescado.jpg" alt="Doradas y salmonetes frescos" loading="lazy"><figcaption>Directo de la lonja</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap visita">
+    <div class="datos">
+      <h2>Visítanos</h2>
+      <p><b>Dónde:</b><br>Mercado de Abastos de Las Cabezas de San Juan (Sevilla)<br>Puestos 9 y 10</p>
+      <p><b>Horario:</b><br>De martes a sábado, por la mañana</p>
+      <p><b>Encargos y consultas:</b><br>
+        <a href="https://wa.me/34610713398" target="_blank" rel="noopener">WhatsApp 610 71 33 98</a> ·
+        <a href="tel:+34610713398">Llamar</a></p>
+      <p><b>Reparto a domicilio:</b><br>1,50 € por pedido</p>
+      <p><b>Síguenos:</b><br>
+        <a href="https://www.facebook.com/profile.php?id=100063768423389" target="_blank" rel="noopener">Facebook · PESCADERIA JURADITO</a></p>
+    </div>
+    <iframe class="mapa" title="Mapa del Mercado de Abastos de Las Cabezas de San Juan"
+      src="https://www.google.com/maps?q=Mercado+de+Abastos,+Las+Cabezas+de+San+Juan,+Sevilla&output=embed"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Pescadería Juradito</h4>
+        <p>Mercado de Abastos, puestos 9 y 10 · Las Cabezas de San Juan (Sevilla)<br>
+          Tel. y WhatsApp 610 71 33 98 · <a href="mailto:juraditopescaderia@gmail.com">juraditopescaderia@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>App de gestión «Juradito»</h4>
+        <p>«Juradito» es la aplicación de uso interno de la pescadería (teléfono de la tienda y ordenador del titular):
+          etiquetas, registros de autocontrol, albaranes, facturas, almacén y registro de jornada. No está disponible al público.
+          Usa la cuenta de Google Drive de la pescadería solo para sus propios archivos.
+          <a href="privacidad.html">Política de privacidad</a>.</p>
+      </div>
+    </div>
+    <div class="legal">Titular: Germán Jurado Morón · © Pescadería Juradito</div>
+  </div>
+</footer>
+
+<a class="wa-flot" href="https://wa.me/34610713398" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
 </body>
 </html>
